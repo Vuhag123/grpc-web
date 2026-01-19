@@ -710,7 +710,7 @@ void PrintTypescriptFile(Printer* printer, const FileDescriptor* file,
           printer->Outdent();
           printer->Print(vars,
                          "}\n"
-                         "return this.client_.unaryCall(\n");
+                         "return this.client_.thenableCall(\n");
           printer->Print(vars,
                          "this.hostname_ +\n"
                          "  '/$package_dot$$service_name$/$method_name$',\n"
