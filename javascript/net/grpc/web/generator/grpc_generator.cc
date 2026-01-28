@@ -710,7 +710,7 @@ void PrintTypescriptFile(Printer* printer, const FileDescriptor* file,
           printer->Outdent();
           printer->Print(vars,
                          "}\n"
-                         "return this.client_.thenableCall(\n");
+                         "return this.client_.unaryCall(\n");
           printer->Print(vars,
                          "this.hostname_ +\n"
                          "  '/$package_dot$$service_name$/$method_name$',\n"
@@ -842,8 +842,8 @@ void PrintProtoDtsMessage(Printer* printer, const Descriptor* desc,
   printer->Print(vars, "export class $class_name$ extends jspb.Message {\n");
   printer->Indent();
 
-  printer->Print(vars, "constructor(opt_data?: $class_name$.AsObject);\n");
-  
+  printer->Print(vars, "constructor();\n" "constructor(opt_data?: $class_name$.AsObject);\n");
+
   for (int i = 0; i < desc->field_count(); i++) {
     const FieldDescriptor* field = desc->field(i);
 
