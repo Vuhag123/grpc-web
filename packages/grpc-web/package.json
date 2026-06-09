@@ -24,8 +24,14 @@
     "test-jsunit": "./scripts/generate_test_files.sh && ./scripts/run_jsunit_tests.sh && rm -rf ./generated"
   },
   "license": "Apache-2.0",
+  "dependencies": {
+    "@grpc-web/closure-wrapper": "file:../closure-wrapper"
+  },
   "devDependencies": {
     "@types/google-protobuf": "~3.15.12",
+    "@types/jasmine": "^6.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.6.0",
     "command-exists": "~1.2.8",
     "google-closure-compiler": "^20250820.0.0",
     "google-closure-deps": "~20210601.0.0",
@@ -34,9 +40,11 @@
     "gulp": "~4.0.2",
     "gulp-connect": "~5.7.0",
     "gulp-eval": "~1.0.0",
+    "jasmine": "^6.2.0",
     "mocha": "~5.2.0",
     "mock-xmlhttprequest": "~2.0.0",
     "protractor": "~7.0.0",
+    "rollup": "^4.60.4",
     "typescript": "latest"
   }
 }
