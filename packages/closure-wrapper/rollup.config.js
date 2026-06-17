@@ -40,16 +40,21 @@ const closureBlobsDir = './node_modules/closure-net/grpc_web/';
       // 3. THIS IS THE FIX: Use the downloaded .js file directly as input!
       input: join(closureBlobsDir, 'grpc_web_blob_es2022.js'),
       
-      output: {
-        // Points to where your package.json exports say it should go
-        file: pkg.exports['./blob'].require, 
-        format: 'cjs', // Keep CommonJS format for your usage
-        sourcemap: true
-      },
+      output: [
+        {
+          // Points to where your package.json exports say it should go
+          file: pkg.exports['./blob'].require, 
+          format: 'cjs', // Keep CommonJS format for your usage
+          sourcemap: true
+        },
+        {
+          file: pkg.exports['./blob'].default, 
+          format: 'es',
+          sourcemap: true
+        }
+      ],
       plugins: buildPlugins
     }
   ];
   
   export default esmBuilds;
-  
-  

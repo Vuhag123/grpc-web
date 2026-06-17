@@ -88,7 +88,10 @@ RUN bazel build javascript/net/grpc/web/generator:protoc-gen-grpc-web && \
 COPY ./javascript ./javascript
 COPY ./packages ./packages
 
-RUN cd ./packages/grpc-web && \
+RUN cd ./packages/closure-wrapper && \
+  yarn install && \
+  yarn build && \
+  cd ../grpc-web && \
   npm install && \
   npm run build && \
   npm link

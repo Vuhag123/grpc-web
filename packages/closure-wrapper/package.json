@@ -19,17 +19,21 @@
   "scripts": {
     "dev": "watch 'npm run build' src",
     "build": "rollup -c",
+    "prepare": "npm run build",
     "test": "echo 'No test suite for closure-wrapper'",
     "test:ci": "echo 'No test suite for closure-wrapper'"
   },
   "license": "Apache-2.0",
+  "dependencies": {
+    "closure-net": "git+https://github.com/google/closure-net.git#main"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "21.1.0",
-    "closure-net": "git+https://github.com/google/closure-net.git#main",
     "rollup": "2.79.2",
     "rollup-plugin-copy": "3.5.0",
     "rollup-plugin-sourcemaps": "0.6.3",
     "rollup-plugin-typescript2": "0.37.0",
+    "typescript": "5.5.4"
   },
   "repository": {
     "directory": "packages/closure-wrapper",
@@ -41,5 +45,3 @@
     "url": "https://github.com/grpc/grpc-web/issues"
   }
 }
-
-    "typescript": "5.5.4"
