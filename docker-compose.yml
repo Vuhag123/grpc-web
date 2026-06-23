@@ -10,7 +10,7 @@
     ts-prereqs:
       build:
         context: ./
-        dockerfile: ./src/typescript/dockerfile.ts
+        dockerfile: ./net/grpc/gateway/docker/ts_prereqs/Dockerfile
       image: grpcweb/ts-prereqs
     # -----------------------------------
   

@@ -162,7 +162,7 @@ describe('grpc web client base test', () => {
     );
     abortController.abort();
     const error = await responsePromise.catch((e) => e);
-    await expect(responsePromise).rejects.toThrow();
+    await expectAsync(responsePromise).toBeRejected();
     expect(error instanceof RpcError).toBe(true);
     expect((error as RpcError).code).toEqual(StatusCode.CANCELLED);
     expect((error as RpcError).message).toEqual('Aborted');
@@ -191,7 +191,7 @@ describe('grpc web client base test', () => {
     );
     abortController.abort('cancelling');
     const error = await responsePromise.catch((e) => e);
-    await expect(responsePromise).rejects.toThrow();
+    await expectAsync(responsePromise).toBeRejected();
     expect(error instanceof RpcError).toBe(true);
     expect((error as RpcError).code).toEqual(StatusCode.CANCELLED);
     expect((error as RpcError).message).toEqual('Aborted');

@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "target": "es2022",                          /* Set the JavaScript language version for emitted JavaScript */
-    "module": "es2022", 
+    "module": "commonjs", 
     "strict": true,
     "allowJs": true,
     "checkJs": true,
-    "noEmit": true,
-    "types": ["node","jest"],
-    "typeRoots": ["../../packages/grpc-web/node_modules/@types"],
+    "noEmit": false,
+    "types": ["node","jasmine"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -15,7 +14,7 @@
     "paths": {
         // Points directly to the file to avoid folder resolution issues
         "@closure-net/blob": [
-          "../../packages/closure-wrapper/node_modules/closure-net/grpc_web/grpc_web_blob_types.d.ts"
+          "../../packages/closure-wrapper/dist/grpc_web_blob_types.d.ts"
         ]
       }
   },

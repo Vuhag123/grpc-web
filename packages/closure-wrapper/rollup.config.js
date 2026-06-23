@@ -11,6 +11,7 @@ const closureBlobsDir = './node_modules/closure-net/grpc_web/';
   const buildPlugins = [
     // 1. Copy the types and code files to the dist folder
     copy({
+      copyOnce: true,
       targets: [
         {
           src: join(closureBlobsDir, 'grpc_web_blob_*.*'),
@@ -22,6 +23,7 @@ const closureBlobsDir = './node_modules/closure-net/grpc_web/';
     // 2. Configure the TypeScript plugin
     typescriptPlugin({
       typescript,
+      clean: true,
       tsconfigOverride: {
         compilerOptions: {
           target: 'es2020',

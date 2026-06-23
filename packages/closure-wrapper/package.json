@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A wrapper of the closure-net packages from google for use outside of a closure compiled application",
   "author": "Google Inc.",
-  "main": "empty.js",
+  "main": "./dist/grpc_web_blob_es2022.js",
   "exports": {
     "./blob": {
       "types": "./dist/grpc_web_blob_types.d.ts",

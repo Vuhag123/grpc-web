@@ -87,6 +87,13 @@ RUN bazel build javascript/net/grpc/web/generator:protoc-gen-grpc-web && \
 
 COPY ./javascript ./javascript
 COPY ./packages ./packages
+COPY ./src ./src
+
+RUN mkdir -p ./src/typescript/generated && \
+    protoc -I=./src/typescript/proto -I=/usr/local/include \
+    ./src/typescript/proto/status.proto \
+    --js_out=import_style=commonjs:./src/typescript/generated \
+    --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./src/typescript/generated
 
 RUN cd ./packages/closure-wrapper && \
   yarn install && \
