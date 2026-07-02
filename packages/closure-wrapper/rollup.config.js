@@ -1,33 +1,21 @@
   import { join } from 'path';
-  import copy from 'rollup-plugin-copy';
   import commonjs from '@rollup/plugin-commonjs';
   import typescriptPlugin from 'rollup-plugin-typescript2';
   import typescript from 'typescript';
   import pkg from './package.json';
   
   // Path to your files downloaded by Yarn
-const closureBlobsDir = './node_modules/closure-net/grpc_web/';
+  const closureBlobsDir = './node_modules/closure-net/grpc_web/';
   
   const buildPlugins = [
-    // 1. Copy the types and code files to the dist folder
-    copy({
-      copyOnce: true,
-      targets: [
-        {
-          src: join(closureBlobsDir, 'grpc_web_blob_*.d.ts'),
-          dest: 'dist/'
-        }
-      ]
-    }),
-    
-    // 2. Configure the TypeScript plugin
+    // Configure the TypeScript plugin
     typescriptPlugin({
       typescript,
       clean: true,
       tsconfigOverride: {
         compilerOptions: {
           target: 'es2020',
-          allowJs: true // Important: tells it to read the .js file!
+          allowJs: true
         }
       }
     }),
@@ -39,14 +27,11 @@ const closureBlobsDir = './node_modules/closure-net/grpc_web/';
    */
   const esmBuilds = [
     {
-      // 3. THIS IS THE FIX: Use the downloaded .js file directly as input!
       input: join(closureBlobsDir, 'grpc_web_blob_es2022.js'),
-      
       output: [
         {
-          // Points to where your package.json exports say it should go
           file: pkg.exports['./blob'].require, 
-          format: 'cjs', // Keep CommonJS format for your usage
+          format: 'cjs',
           sourcemap: true
         },
         {
