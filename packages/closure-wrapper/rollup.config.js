@@ -14,7 +14,7 @@ const closureBlobsDir = './node_modules/closure-net/grpc_web/';
       copyOnce: true,
       targets: [
         {
-          src: join(closureBlobsDir, 'grpc_web_blob_*.*'),
+          src: join(closureBlobsDir, 'grpc_web_blob_*.d.ts'),
           dest: 'dist/'
         }
       ]

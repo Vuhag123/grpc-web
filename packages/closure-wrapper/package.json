@@ -5,6 +5,11 @@
   "author": "Google Inc.",
   "main": "./dist/grpc_web_blob_es2022.js",
   "exports": {
+    ".": {
+       "types": "./dist/grpc_web_blob_types.d.ts",
+       "require": "./dist/grpc_web_blob_es2022.js",
+       "default": "./dist/esm/grpc_web_blob_es2022.js"
+    },
     "./blob": {
       "types": "./dist/grpc_web_blob_types.d.ts",
       "require": "./dist/grpc_web_blob_es2022.js",
@@ -18,7 +23,7 @@
   ],
   "scripts": {
     "dev": "watch 'npm run build' src",
-    "build": "rollup -c",
+    "build": "mkdir -p dist dist/esm && touch dist/grpc_web_blob_es2022.js dist/esm/grpc_web_blob_es2022.js && rollup -c",
     "prepare": "npm run build",
     "test": "echo 'No test suite for closure-wrapper'",
     "test:ci": "echo 'No test suite for closure-wrapper'"

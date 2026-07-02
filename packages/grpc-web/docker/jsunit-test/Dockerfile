@@ -20,9 +20,10 @@ WORKDIR /grpc-web
 # Copy all needed files before running npm install or compiler
 COPY ./packages ./packages
 COPY ./javascript ./javascript
+COPY ./src ./src
 COPY ./scripts ./scripts
 
 # Install npm dependencies and build the JS library
 RUN cd /grpc-web/packages/closure-wrapper && yarn install && yarn build
 WORKDIR /grpc-web/packages/grpc-web
-RUN npm install
+RUN npm install --ignore-scripts

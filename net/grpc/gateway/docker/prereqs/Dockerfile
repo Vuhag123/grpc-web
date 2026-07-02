@@ -99,7 +99,7 @@ RUN cd ./packages/closure-wrapper && \
   yarn install && \
   yarn build && \
   cd ../grpc-web && \
-  npm install && \
+  npm install --ignore-scripts && \
   npm run build && \
   npm link
 

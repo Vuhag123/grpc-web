@@ -12,6 +12,30 @@ import {RpcError} from './rpcerror';
 import {Status} from './status';
 import {StatusCode} from './statuscode';
 
+  // Mock XMLHttpRequest across all Node.js / Closure global scopes
+const mockXhr = require('mock-xmlhttprequest');
+if (typeof global !== 'undefined' && !global.XMLHttpRequest) (global as any).XMLHttpRequest = mockXhr;
+if (typeof globalThis !== 'undefined' && !(globalThis as any).XMLHttpRequest) (globalThis as any).XMLHttpRequest = mockXhr;
+
+// Fix: Map all obfuscated MockXhrIo methods/flags back to standard XhrIo method names
+if (MockXhrIo && MockXhrIo.prototype) {
+  const proto = MockXhrIo.prototype as any;
+  Object.defineProperty(proto, 'j', {
+    get() { return this.h; },
+    set(v) { this.h = v; }
+  });
+  proto.send = proto.ba || proto.send;
+  proto.getResponseText = proto.la || proto.getResponseText;
+  proto.getResponse = proto.ja || proto.getResponse;
+  proto.getResponseHeader = proto.na || proto.getResponseHeader;
+  proto.getStreamingResponseHeader = proto.na || proto.getStreamingResponseHeader;
+  proto.getAllResponseHeaders = proto.aa || proto.getAllResponseHeaders;
+  proto.getResponseHeaders = function() { return this.D || {}; };
+  proto.getStatus = proto.I || proto.getStatus;
+  proto.getLastErrorCode = proto.ha || proto.getLastErrorCode;
+  proto.getLastRequestHeaders = function() { return this.M || {}; };
+}
+
 // This parses to [ { DATA: [4, 5, 6] }, { TRAILER: "a: b" } ]
 const DEFAULT_RPC_RESPONSE = new Uint8Array([
   0, 0, 0, 0, 3, 4, 5, 6, 128, 0, 0, 0, 4, 97, 58, 32, 98,

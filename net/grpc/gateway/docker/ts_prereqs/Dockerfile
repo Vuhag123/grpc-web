@@ -19,7 +19,7 @@
   
   # 4. Build the main TS project
   RUN cd packages/grpc-web && \
-      npm install && \
+      npm install --ignore-scripts && \
       npm run build
 
       RUN cd packages/grpc-web && npx mocha --timeout 10000 test/tsc_test.js
